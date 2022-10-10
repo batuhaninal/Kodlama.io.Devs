@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using Core.Security.Entities;
+using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -15,6 +16,13 @@ namespace Persistence.Contexts
 
         public DbSet<ProgramingLanguage> ProgramingLanguages { get; set; }
         public DbSet<Technology> Technologies { get; set; }
+
+
+        // Auths
+        public DbSet<User> Users { get; set; }
+        public DbSet<OperationClaim> OperationClaims { get; set; }
+        public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
 
         public BaseDbContext(DbContextOptions dbContextOptions,IConfiguration configuration) : base(dbContextOptions)
         {
@@ -41,6 +49,7 @@ namespace Persistence.Contexts
 
                 x.HasOne(p => p.ProgramingLanguage);
             });
+
 
             ProgramingLanguage[] languageSeeds = { new(1, "C#"), new(2, "Java"), new(3, "Python") };
             modelBuilder.Entity<ProgramingLanguage>().HasData(languageSeeds);

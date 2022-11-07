@@ -11,5 +11,6 @@ namespace Application.Features.ProgramingLanguages.Models
     public class ProgramingLanguageListModel : BasePageableModel
     {
         public IList<ProgramingLanguageListDto> Items { get; set; }
+        public int Deneme { get; set; }
     }
 }
